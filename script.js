@@ -625,6 +625,31 @@ ePubViewer.actions.openBook = function () {
     document.body.appendChild(fi);
     fi.click();
 };
+
+ePubViewer.actions.openBookConceito = function () {
+    var fi = document.getElementById("arquivo");
+    var reader = new FileReader();
+
+    var blob = null;
+    var xhr = new XMLHttpRequest(); 
+    xhr.open("GET", fi.src); 
+    xhr.responseType = "blob";//force the HTTP response, response-type header to be blob
+    xhr.onload = function() 
+    {
+        blob = xhr.response;//xhr.response is now a blob object
+    }
+    xhr.send();
+
+    reader.readAsArrayBuffer(blob);
+    reader.addEventListener("loadend", function(e)
+    {
+            var buffer = e.srcElement.result;//arraybuffer object
+    });
+    
+ 
+    ePubViewer.actions.loadBook(reader.result);
+};
+
 ePubViewer.actions.fullScreen = function () {
     document.fullscreenEnabled = document.fullscreenEnabled || document.mozFullScreenEnabled || document.documentElement.webkitRequestFullScreen;
     
