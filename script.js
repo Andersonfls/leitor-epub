@@ -629,7 +629,6 @@ ePubViewer.actions.openBook = function () {
 ePubViewer.actions.openBookConceito = function () {
     var fi = document.getElementById("arquivo");
     var reader = new FileReader();
-
     var blob = null;
     var xhr = new XMLHttpRequest(); 
     xhr.open("GET", fi.src); 
@@ -639,14 +638,8 @@ ePubViewer.actions.openBookConceito = function () {
         blob = xhr.response;//xhr.response is now a blob object
     }
     xhr.send();
-
-    reader.readAsArrayBuffer(blob);
-    reader.addEventListener("loadend", function(e)
-    {
-            var buffer = e.srcElement.result;//arraybuffer object
-    });
-    
- 
+    var file = new File([blob], "conceito.epub");
+    reader.readAsArrayBuffer(file);
     ePubViewer.actions.loadBook(reader.result);
 };
 
