@@ -627,20 +627,23 @@ ePubViewer.actions.openBook = function () {
 };
 
 ePubViewer.actions.openBookConceito = function () {
-    var fi = document.getElementById("arquivo");
-    var reader = new FileReader();
-    var blob = null;
-    var xhr = new XMLHttpRequest(); 
-    xhr.open("GET", fi.src); 
-    xhr.responseType = "blob";//force the HTTP response, response-type header to be blob
-    xhr.onload = function() 
-    {
-        blob = xhr.response;//xhr.response is now a blob object
-    }
-    xhr.send();
-    var file = new File([blob], "conceito.epub");
-    reader.readAsArrayBuffer(file);
-    ePubViewer.actions.loadBook(reader.result);
+   //  var fi = document.getElementById("arquivo");
+   //  var reader = new FileReader();
+   //  var blob = null;
+   //  var xhr = new XMLHttpRequest(); 
+   //  xhr.open("GET", fi.src); 
+   //  xhr.responseType = "blob";//force the HTTP response, response-type header to be blob
+   //  xhr.onload = function() 
+   //  {
+   //      blob = xhr.response;//xhr.response is now a blob object
+   //  }
+   //  xhr.send();
+   //  var file = new File([blob], "conceito.epub", {
+   //        type: "application/epub+zip",
+   // });
+
+   //  reader.readAsArrayBuffer(file);
+    ePubViewer.actions.loadBook("conceito.epub");
 };
 
 ePubViewer.actions.fullScreen = function () {
